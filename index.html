@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+</head>
+<body>
+  <script>
+    // Your JavaScript goes here!
+
+    //computer opponent's selection. selected at random
+    function computerPlay(){
+      let playArray = ['rock', 'paper', 'scissors'];
+
+        return playArray[Math.floor(Math.random()*playArray.length)];
+    }
+
+    //prompt's user for choice
+    function userPlay(){
+      let playerSelection = prompt("Choose Rock, Paper or Scissors!");
+
+      return playerSelection;
+    }
+
+    //playRound function takes in both user and computer selection
+    //determines who won the round and returns the result
+
+    function playRound(playerSelection, computerSelection) {
+  	   playerSelection = playerSelection.toLowerCase(); //convert to lower case so all inputs are valid
+       computerSelection = computerSelection.toLowerCase();
+
+       if (playerSelection === "paper" && computerSelection ==="rock") {
+         return "You Win";
+       } else if (playerSelection === "scissors" && computerSelection === "paper") {
+         return "You Win";
+       } else if (playerSelection === "rock" && computerSelection === "scissors") {
+         return "You Win";
+       } else if (playerSelection === computerSelection) {
+         return "Draw";
+       } else {
+         return "You Lose";
+       }
+    }
+
+    //game() function loops through 5 rounds of rock paper Scissors
+    //displays results of each round, and at the end display how many rounds were won
+    function game(){
+      let wins = 0;
+      var i;
+
+      for (i=0; i < 5; i++) {
+        let userChoice = userPlay();
+        let computerChoice = computerPlay();
+        let result = playRound(userChoice, computerChoice);
+        console.log("You chose " + userChoice + ". Computer chose " + computerChoice);
+        console.log(result);
+
+        if ( result === "You Win") {
+          wins++;
+      }
+    }
+      console.log("You won " + wins + " out of 5 rounds")
+
+    }
+    game();
+
+  </script>
+</body>
+</html>
