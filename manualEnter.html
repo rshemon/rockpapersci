@@ -4,18 +4,6 @@
   <title>Page Title</title>
 </head>
 <body>
-
-<h1>Choose wisely!</h1>
-<button id="rock">Rock</button>
-<button id="paper">Paper</button>
-<button id="scissors">Scissors</button>
-
-<br><br>
-
-<div id="results">
-  <p>Results</p>
-</div>
-
   <script>
     // Your JavaScript goes here!
 
@@ -28,7 +16,7 @@
 
     //prompt's user for choice
     function userPlay(){
-      //let playerSelection = prompt("Choose Rock, Paper or Scissors!");
+      let playerSelection = prompt("Choose Rock, Paper or Scissors!");
 
       return playerSelection;
     }
@@ -41,53 +29,39 @@
        computerSelection = computerSelection.toLowerCase();
 
        if (playerSelection === "paper" && computerSelection ==="rock") {
-         return "You Win!";
+         return "You Win";
        } else if (playerSelection === "scissors" && computerSelection === "paper") {
-         return "You Win!";
+         return "You Win";
        } else if (playerSelection === "rock" && computerSelection === "scissors") {
-         return "You Win!";
+         return "You Win";
        } else if (playerSelection === computerSelection) {
-         return "Draw!";
+         return "Draw";
        } else {
-         return "You Lose!";
+         return "You Lose";
        }
     }
 
     //game() function loops through 5 rounds of rock paper Scissors
     //displays results of each round, and at the end display how many rounds were won
-    function game(e){
+    function game(){
       let wins = 0;
       var i;
 
-      //for (i=0; i < 5; i++) {
-        let userChoice = e.target.id;
+      for (i=0; i < 5; i++) {
+        let userChoice = userPlay();
         let computerChoice = computerPlay();
         let result = playRound(userChoice, computerChoice);
-        console.log(" You chose " + userChoice + ". Computer chose " + computerChoice);
+        console.log("You chose " + userChoice + ". Computer chose " + computerChoice);
         console.log(result);
 
-        if ( result === "You Win!") {
+        if ( result === "You Win") {
           wins++;
       }
-      result += " You chose " + userChoice + ". Computer chose " + computerChoice
-      displayResult(result);
-
     }
-
-    function displayResult(result) {
-      var para = document.createElement("p");
-      var node = document.createTextNode(result);
-      para.appendChild(node);
-      var element = document.getElementById("results");
-      element.appendChild(para);
-
       console.log("You won " + wins + " out of 5 rounds")
+
     }
-
-    //game();
-
-    const buttons = document.querySelectorAll('button');
-    buttons.forEach(button => button.addEventListener('mousedown',game));
+    game();
 
   </script>
 </body>
