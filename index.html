@@ -12,25 +12,21 @@
 
 <br><br>
 
+<div id="score">
+  <p>Score:</p>
+</div>
+
 <div id="results">
   <p>Results</p>
 </div>
 
   <script>
-    // Your JavaScript goes here!
 
     //computer opponent's selection. selected at random
     function computerPlay(){
       let playArray = ['rock', 'paper', 'scissors'];
 
         return playArray[Math.floor(Math.random()*playArray.length)];
-    }
-
-    //prompt's user for choice
-    function userPlay(){
-      //let playerSelection = prompt("Choose Rock, Paper or Scissors!");
-
-      return playerSelection;
     }
 
     //playRound function takes in both user and computer selection
@@ -56,24 +52,24 @@
     //game() function loops through 5 rounds of rock paper Scissors
     //displays results of each round, and at the end display how many rounds were won
     function game(e){
-      let wins = 0;
-      var i;
+      gameCount++;
 
-      //for (i=0; i < 5; i++) {
-        let userChoice = e.target.id;
-        let computerChoice = computerPlay();
-        let result = playRound(userChoice, computerChoice);
-        console.log(" You chose " + userChoice + ". Computer chose " + computerChoice);
-        console.log(result);
+      let userChoice = e.target.id;
+      let computerChoice = computerPlay();
+      let result = playRound(userChoice, computerChoice);
+      console.log(" You chose " + userChoice + ". Computer chose " + computerChoice);
+      console.log(result);
 
-        if ( result === "You Win!") {
-          wins++;
+      if ( result === "You Win!") {
+        wins++;
       }
+
       result += " You chose " + userChoice + ". Computer chose " + computerChoice
       displayResult(result);
 
     }
 
+    //function used to display score and results text
     function displayResult(result) {
       var para = document.createElement("p");
       var node = document.createTextNode(result);
@@ -81,13 +77,15 @@
       var element = document.getElementById("results");
       element.appendChild(para);
 
-      console.log("You won " + wins + " out of 5 rounds")
+      score.textContent = "Score: " + wins + " / " + gameCount;
+      console.log("You won " + wins + " out of 5 rounds");
     }
 
-    //game();
-
     const buttons = document.querySelectorAll('button');
+    const score = document.querySelector('#score');
     buttons.forEach(button => button.addEventListener('mousedown',game));
+    var wins = 0; //keeps track of user wins
+    var gameCount = 0; //keeps track of total games user played
 
   </script>
 </body>
